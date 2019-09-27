@@ -8,14 +8,21 @@
     </head>
     <body>
         <h1>Notifier</h1>
+        <p>all</p>
+        <ul id="notifications"></ul>
         <script>
             document.addEventListener('DOMContentLoaded',function(){
                 
                 const webSocketBridge = new channels.WebSocketBridge();
-                webSocketBridge.connect('/ws/');
+                const nl = document.querySelector('#notifications')
+                webSocketBridge.connect('/notifications/');
                 
                 webSocketBridge.listen(function(action,stream){
                     console.log('RESPONSE:',action);
+
+                if(action.event = 'New User'){
+                   alert('new')
+                }
                 })
                 document.ws = webSocketBridge; /*debugging*/
 
