@@ -124,11 +124,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 #channels config
-CHANNELS_LAYERS = {
-    'defaul':{
-        'BACKEND':'channels_redis.core.RedisChannelLayer',
-        'CONFIG':{
-            'hosts':[('localhost',6379)]
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [('localhost', 6379)],
         },
     },
 }
