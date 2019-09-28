@@ -1,9 +1,37 @@
+{% load staticfiles %}
 <html>
     <head>
-        <title>Other</title>
+        <title>
+            notifier
+        </title>
+        <script src="{% static '/channels/js/websocketbridge.js' %}" type="text/javascript"></script>
     </head>
     <body>
-        Home page
+        <div class="container">
+        <h1>Notifier</h1>
+       
+        <ul id="notifications"> notifications</ul>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded',function(){
+                var count=0;
+                const webSocketBridge = new channels.WebSocketBridge();
+                const nl = document.querySelector('#notifications')
+                webSocketBridge.connect('/notifications/');
+                
+                webSocketBridge.listen(function(action,stream){
+                    console.log('RESPONSE:',action);
+
+                if(action.event = 'New User'){
+                    alert('new')
+                   count=count+1
+                    document.getElementById("notifications").innerHTML = count;
+                    console.log(count,'me')
+                }
+                })
+                document.ws = webSocketBridge; /*debugging*/
+
+            })
+        </script>
     </body>
-    <p><a href="/">View</a></p>
 </html>
