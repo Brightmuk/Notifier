@@ -9,10 +9,10 @@
     <body>
         <h1>Notifier</h1>
         <p>all</p>
-        <ul id="notifications"></ul>
+        <ul id="notifications"> notifications</ul>
         <script>
             document.addEventListener('DOMContentLoaded',function(){
-                
+                var count=0;
                 const webSocketBridge = new channels.WebSocketBridge();
                 const nl = document.querySelector('#notifications')
                 webSocketBridge.connect('/notifications/');
@@ -21,7 +21,10 @@
                     console.log('RESPONSE:',action);
 
                 if(action.event = 'New User'){
-                   alert('new')
+                    alert('new')
+                   count=count+1
+                    document.getElementById("notifications").innerHTML = count;
+                    console.log(count,'me')
                 }
                 })
                 document.ws = webSocketBridge; /*debugging*/
